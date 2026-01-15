@@ -2,6 +2,23 @@
 
 // Video intro functionality
 let videoPlayed = false;
+let videoLoaded = false;
+
+// Preload video on first user interaction (iOS requires this)
+function preloadVideo() {
+    if (videoLoaded) return;
+    videoLoaded = true;
+    
+    const video = document.getElementById('introVideo');
+    if (video) {
+        // This triggers iOS to start loading the video
+        video.load();
+    }
+}
+
+// Listen for any touch/click to start preloading
+document.addEventListener('touchstart', preloadVideo, { once: true, passive: true });
+document.addEventListener('mousedown', preloadVideo, { once: true, passive: true });
 
 function playIntroVideo() {
     if (videoPlayed) return;
@@ -19,7 +36,19 @@ function playIntroVideo() {
         introScreen.classList.add('hidden');
     });
     
-    // Play the video with Promise handling for iOS
+    // Ensure video is loaded before playing
+    if (video.readyState < 3) {
+        // Video not ready yet, show loading state and wait
+        video.load();
+        video.addEventListener('canplay', function() {
+            playVideoWithPromise(video, introScreen);
+        }, { once: true });
+    } else {
+        playVideoWithPromise(video, introScreen);
+    }
+}
+
+function playVideoWithPromise(video, introScreen) {
     const playPromise = video.play();
     
     if (playPromise !== undefined) {
