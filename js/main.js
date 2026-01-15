@@ -9,17 +9,30 @@ function playIntroVideo() {
     
     const video = document.getElementById('introVideo');
     const tapHint = document.getElementById('tapHint');
+    const introScreen = document.getElementById('videoIntroScreen');
     
     // Hide the tap hint
     tapHint.classList.add('hidden');
     
-    // Play the video
-    video.play();
-    
-    // When video ends, show the landing screen
+    // When video ends, hide the intro screen
     video.addEventListener('ended', function() {
-        document.getElementById('videoIntroScreen').classList.add('hidden');
+        introScreen.classList.add('hidden');
     });
+    
+    // Play the video with Promise handling for iOS
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                // Video started playing successfully
+            })
+            .catch((error) => {
+                // Video failed to play - skip to main content
+                console.log('Video playback failed:', error);
+                introScreen.classList.add('hidden');
+            });
+    }
 }
 
 // Enter site animation
