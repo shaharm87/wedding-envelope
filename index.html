@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Linor & Shahar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="scrollable">
+    <!-- Video Intro Screen -->
+    <div class="video-intro-screen" id="videoIntroScreen" onclick="playIntroVideo()">
+        <video class="intro-video" id="introVideo" muted playsinline>
+            <source src="assets/envelope.mp4" type="video/mp4">
+        </video>
+        <div class="tap-hint" id="tapHint">TAP TO OPEN</div>
+    </div>
+
+    <!-- Landing Screen (commented out for now)
+    <div class="landing-screen" id="landingScreen">
+        <div class="landing-title">WE'RE GETTING MARRIED</div>
+        <div class="landing-names">Linor & Shahar</div>
+        <div class="landing-date">MAY 20, 2026</div>
+        <button class="enter-btn" onclick="enterSite()">ENTER</button>
+    </div>
+    -->
+
+    <!-- Main Content -->
+    <div class="main-content visible" id="mainContent">
+        <!-- Hero Section -->
+        <div class="hero-section fade-in">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="assets/linor&shahar.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-save-date">Save the date</div>
+                <div class="hero-names">
+                    <span>LINOR</span>
+                    <span class="hero-ampersand">&</span>
+                    <span>SHAHAR</span>
+                </div>
+                <div class="hero-message">We're getting married!</div>
+                <div class="hero-date">
+                    <span>MAY</span>
+                    <span class="hero-date-separator">|</span>
+                    <span class="hero-date-day">20</span>
+                    <span class="hero-date-separator">|</span>
+                    <span>WEDNESDAY</span>
+                </div>
+                <div class="hero-year">2026</div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- Countdown Section -->
+        <section class="fade-in">
+            <div class="section-title">COUNTDOWN</div>
+            <div class="section-subtitle">To our special day</div>
+            <div class="countdown" id="countdown">
+                <div class="countdown-box fade-in stagger-1">
+                    <span class="countdown-number" id="days">0</span>
+                    <span class="countdown-label">DAYS</span>
+                </div>
+                <div class="countdown-box fade-in stagger-2">
+                    <span class="countdown-number" id="hours">0</span>
+                    <span class="countdown-label">HOURS</span>
+                </div>
+                <div class="countdown-box fade-in stagger-3">
+                    <span class="countdown-number" id="minutes">0</span>
+                    <span class="countdown-label">MINUTES</span>
+                </div>
+                <div class="countdown-box fade-in stagger-4">
+                    <span class="countdown-number" id="seconds">0</span>
+                    <span class="countdown-label">SECONDS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details -->
+        <section class="fade-in">
+            <div class="heart-icon fade-in-scale">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="section-title">EVENT DETAILS</div>
+            <div class="section-subtitle">Everything you need to know</div>
+            <div class="event-details fade-in stagger-2">
+                <div class="location-title">LOCATION</div>
+                <div class="venue-name">Basico</div>
+                <div class="venue-city">Ness Ziona</div>
+                <div class="event-time">From 19:30 PM to 2:30 AM</div>
+                
+                <div class="map-container fade-in stagger-3">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Basico+Ness+Ziona+Israel&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="action-buttons fade-in stagger-4">
+                    <a href="https://maps.app.goo.gl/fXkgaNmDiPG249Fq6" target="_blank" class="action-btn">
+                        <span class="action-btn-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#815854" stroke="none"/>
+                            </svg>
+                        </span>
+                        Open in Maps
+                    </a>
+                    <button class="action-btn" onclick="addToCalendar()">
+                        <span class="action-btn-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="#815854" fill="none" stroke-width="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6" stroke="#815854" stroke-width="2"/>
+                                <line x1="8" y1="2" x2="8" y2="6" stroke="#815854" stroke-width="2"/>
+                                <line x1="3" y1="10" x2="21" y2="10" stroke="#815854" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        Add to Calendar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Section -->
+        <section class="fade-in schedule-section">
+            <div class="heart-icon fade-in-scale">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="section-title">EVENT SCHEDULE</div>
+            <div class="section-subtitle">What we have planned for you</div>
+            
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-left">
+                        <div class="timeline-time">19:30</div>
+                        <div class="timeline-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Arrival</div>
+                        <div class="timeline-desc">Welcome guests</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-left">
+                        <div class="timeline-time">20:30</div>
+                        <div class="timeline-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ceremony</div>
+                        <div class="timeline-desc">We say yes</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-left">
+                        <div class="timeline-time">21:00</div>
+                        <div class="timeline-icon">
+                            <i class="fa-solid fa-martini-glass-citrus"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Cocktail</div>
+                        <div class="timeline-desc">Drinks & appetizers</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-left">
+                        <div class="timeline-time">22:00</div>
+                        <div class="timeline-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Dinner</div>
+                        <div class="timeline-desc">Wedding banquet</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-left">
+                        <div class="timeline-time">23:00</div>
+                        <div class="timeline-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Party</div>
+                        <div class="timeline-desc">Let's dance!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="fade-in">
+            <div class="heart-icon fade-in-scale">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="footer-names">Linor & Shahar</div>
+            <div class="footer-date">May 20, 2026</div>
+            <div class="footer-message">With all our love</div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
